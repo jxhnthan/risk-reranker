@@ -89,7 +89,7 @@ function populateCasesTable(data, animate = false) {
   data.forEach(caseItem => {
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${caseItem.Case_ID}</td>
+      <td onclick="showCaseDetails('${caseItem.Case_ID}', '${caseItem.Suicide_Risk}', '${caseItem.Self_Harm_Risk}', ${caseItem.OQ_45})">${caseItem.Case_ID}</td>
       <td>${caseItem.Suicide_Risk}</td>
       <td>${caseItem.Self_Harm_Risk}</td>
       <td>${caseItem.OQ_45}</td>
@@ -122,7 +122,7 @@ function reRankCases() {
     cases.push(caseData);
   });
 
-  // Sorting logic: Priority is Suicide Risk -> Self Harm Risk -> OQ45
+  // Sorting logic: Priority is Suicide Risk -> Self Harm Risk -> OQ45 (tiebreaker)
   cases.sort((a, b) => {
     const suicideRiskOrder = { 'High': 3, 'Moderate': 2, 'Low': 1 };
     const selfHarmRiskOrder = { 'High': 3, 'Moderate': 2, 'Low': 1 };
@@ -137,8 +137,8 @@ function reRankCases() {
       return selfHarmRiskOrder[b.Self_Harm_Risk] - selfHarmRiskOrder[a.Self_Harm_Risk];
     }
 
-    // If both suicide and self-harm risk are the same, compare by OQ-45 score (lower OQ-45 means higher priority)
-    return a.OQ_45 - b.OQ_45;
+    // If both suicide and self-harm risk are the same, compare by OQ-45 score (higher OQ-45 means higher priority)
+    return b.OQ_45 - a.OQ_45;
   });
 
   // Assign ranks from 1 to 10 (highest priority gets rank 1, lowest gets rank 10)
@@ -148,6 +148,23 @@ function reRankCases() {
 
   // Re-populate the table with sorted data
   populateCasesTable(cases, true);
+}
+
+// Function to show case details in the modal
+function showCaseDetails(caseID, suicideRisk, selfHarmRisk, oq45) {
+  const caseDetailsInfo = document.getElementById("case-details-info");
+  caseDetailsInfo.innerHTML = `
+    <strong>Case ID:</strong> ${caseID}<br>
+    <strong>Suicide Risk:</strong> ${suicideRisk}<br>
+    <strong>Self Harm Risk:</strong> ${selfHarmRisk}<br>
+    <strong>OQ-45 Score:</strong> ${oq45}<br>
+  `;
+  document.getElementById("case-details-modal").style.display = "block";
+}
+
+// Function to close the case details modal
+function closeCaseDetails() {
+  document.getElementById("case-details-modal").style.display = "none";
 }
 
 // Function to toggle between dark and light theme
@@ -165,6 +182,7 @@ function toggleTheme() {
     icon.classList.add('fa-moon');
   }
 }
+
 
 
 

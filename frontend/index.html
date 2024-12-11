@@ -50,8 +50,19 @@
               <th>Priority Ranking</th>
             </tr>
           </thead>
-          <tbody id="cases-tbody"></tbody>
+          <tbody id="cases-tbody">
+            <!-- Case rows will be dynamically inserted here -->
+          </tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- Case Details Modal -->
+    <div id="case-details-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeCaseDetails()">&times;</span>
+        <h3>Case Details</h3>
+        <p id="case-details-info">Loading...</p>
       </div>
     </div>
 
@@ -64,6 +75,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
