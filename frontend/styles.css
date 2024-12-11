@@ -1,0 +1,296 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Personalization Page */
+#personalization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#personalization-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#username {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.avatar-selection {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+}
+
+.avatar.selected {
+  border: 2px solid #007bff;
+  padding: 2px;
+}
+
+#startButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+#startButton:hover {
+  background-color: #0056b3;
+}
+
+/* Landing Page */
+.landing {
+  display: none;
+  text-align: center;
+}
+
+.user-info img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.user-info h2 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.cases-info {
+  margin-top: 20px;
+}
+
+.cases-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.show-btn, .rerank-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.show-btn:hover, .rerank-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Table Styles */
+#cases-table-container {
+  width: 100%;
+  overflow-x: auto;  /* Allow horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Ensure the table has a minimum width */
+}
+
+th, td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+td {
+  background-color: #fff;
+}
+
+tr:nth-child(even) td {
+  background-color: #f4f4f9;
+}
+
+/* Highlight animation for re-ranked rows */
+tr.highlight {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    background-color: #cce5ff;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+/* Responsive Design for Mobile */
+@media screen and (max-width: 768px) {
+  table {
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+
+  th, td {
+    padding: 8px; /* Reduce padding for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  table {
+    font-size: 10px; /* Further reduce font size on very small screens */
+  }
+
+  th, td {
+    padding: 5px; /* Further reduce padding on small screens */
+  }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 30px;
+  background-color: #007bff;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 5px;
+}
+
+.theme-toggle:hover {
+  background-color: #0056b3;
+}
+
+.theme-toggle i {
+  font-size: 20px;
+  color: #fff;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Dark Mode Styles */
+body.dark {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+body.dark table {
+  border-color: #444;
+}
+
+body.dark th {
+  background-color: #333;
+}
+
+body.dark td {
+  background-color: #222;
+}
+
+body.dark tr:nth-child(even) td {
+  background-color: #292929;
+}
+
+body.dark .theme-toggle {
+  background-color: #ffcc00;
+}
+
+/* Icons for the Moon and Sun */
+.moon, .sun {
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Sun and Moon Transitions */
+body.dark .moon {
+  opacity: 0;
+}
+
+body:not(.dark) .sun {
+  opacity: 0;
+}
+
+body.dark .sun {
+  opacity: 1;
+}
+
+body:not(.dark) .moon {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+  
+  
+  
+  

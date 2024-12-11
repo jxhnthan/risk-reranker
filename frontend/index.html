@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Landing Page</title>
+</head>
+<body>
+  <div class="container">
+    <!-- Personalization Page -->
+    <div id="personalization">
+      <form id="personalization-form">
+        <input type="text" id="username" placeholder="Enter your name" required>
+        <div class="avatar-selection">
+          <img src="assets/avatars/avatar1.png" alt="Avatar 1" class="avatar" onclick="selectAvatar(event)">
+          <img src="assets/avatars/avatar2.png" alt="Avatar 2" class="avatar" onclick="selectAvatar(event)">
+          <img src="assets/avatars/avatar3.png" alt="Avatar 3" class="avatar" onclick="selectAvatar(event)">
+        </div>
+        <button type="submit" id="startButton">Start</button>
+      </form>
+    </div>
+
+    <!-- Main Landing Page -->
+    <div id="landing" class="landing" style="display: none;">
+      <div class="user-info">
+        <img id="user-avatar" src="" alt="User Avatar" class="avatar">
+        <h2>Welcome, <span id="user-name"></span></h2>
+      </div>
+      <div class="cases-info">
+        <p>You have <span id="pending-cases">10</span> cases pending to be assigned.</p>
+        <div class="action-buttons">
+          <button class="show-btn" onclick="generateCases()">Generate Cases</button>
+          <button class="rerank-btn" onclick="reRankCases()">Re-Rank Cases</button>
+        </div>
+      </div>
+      <!-- Cases table dynamically generated -->
+      <div id="cases-table" style="display: none;">
+        <h3>Cases</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Case ID</th>
+              <th>Suicide Risk</th>
+              <th>Self Harm Risk</th>
+              <th>OQ-45</th>
+              <th>Priority Ranking</th>
+            </tr>
+          </thead>
+          <tbody id="cases-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Theme Toggle Button with FontAwesome icons (Moon/Sun) -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <i id="theme-icon" class="fa fa-moon"></i> <!-- Default to moon icon -->
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
