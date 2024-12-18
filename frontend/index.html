@@ -3,73 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Clinical Case Ranking Game</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <title>HWB Risk Reranker</title>
 </head>
 <body>
-  <div class="container">
-    <!-- Personalization Page -->
-    <div id="personalization">
-      <form id="personalization-form">
-        <input type="text" id="username" placeholder="Enter your name" required>
-        <div class="avatar-selection">
-          <img src="assets/avatars/avatar1.png" alt="Avatar 1" class="avatar" onclick="selectAvatar(event)">
-          <img src="assets/avatars/avatar2.png" alt="Avatar 2" class="avatar" onclick="selectAvatar(event)">
-          <img src="assets/avatars/avatar3.png" alt="Avatar 3" class="avatar" onclick="selectAvatar(event)">
-        </div>
-        <button type="submit" id="startButton">Start</button>
-      </form>
+  <!-- Night/Day Button -->
+  <div id="theme-toggle" onclick="toggleTheme()">
+    <i id="theme-icon" class="fa fa-sun"></i> <!-- Day icon by default -->
+  </div>
+
+  <!-- Personalization Form -->
+  <div id="personalization">
+    <form id="personalization-form">
+      <label for="username">Enter your name:</label>
+      <input type="text" id="username" required />
+      <div id="avatars">
+        <img src="avatar1.png" alt="Avatar 1" class="avatar" onclick="selectAvatar(event)">
+        <img src="avatar2.png" alt="Avatar 2" class="avatar" onclick="selectAvatar(event)">
+        <img src="avatar3.png" alt="Avatar 3" class="avatar" onclick="selectAvatar(event)">
+      </div>
+      <button type="submit">Start Game</button>
+    </form>
+  </div>
+
+  <!-- Landing Page (after form submission) -->
+  <div id="landing" style="display: none;">
+    <h1>Welcome, <span id="user-name"></span>!</h1>
+    <img id="user-avatar" src="" alt="User Avatar" width="100" height="100">
+    
+    <!-- Timer and Score Section -->
+    <div id="timer-score-container">
+      <p id="timer">2:00</p>
+      <p id="live-score">Score: 0%</p>
     </div>
 
-    <!-- Main Landing Page -->
-    <div id="landing" class="landing" style="display: none;">
-      <div class="user-info">
-        <img id="user-avatar" src="" alt="User Avatar" class="avatar">
-        <h2>Welcome, <span id="user-name"></span></h2>
-      </div>
-      <div class="cases-info">
-        <p>You have <span id="pending-cases">10</span> cases pending to be assigned.</p>
-        <div class="action-buttons">
-          <button class="show-btn" onclick="generateCases()">Generate Cases</button>
-          <button class="rerank-btn" onclick="reRankCases()">Re-Rank Cases</button>
-        </div>
-      </div>
-      <!-- Cases table dynamically generated -->
-      <div id="cases-table" style="display: none;">
-        <h3>Cases</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Case ID</th>
-              <th>Suicide Risk</th>
-              <th>Self Harm Risk</th>
-              <th>OQ-45</th>
-              <th>Priority Ranking</th>
-            </tr>
-          </thead>
-          <tbody id="cases-tbody">
-            <!-- Case rows will be dynamically inserted here -->
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <!-- Case cards will be dynamically added here -->
+    <div id="cases-container"></div> 
+  </div>
 
-    <!-- Case Details Modal -->
-    <div id="case-details-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeCaseDetails()">&times;</span>
-        <h3>Case Details</h3>
-        <p id="case-details-info">Loading...</p>
-      </div>
-    </div>
-
-    <!-- Theme Toggle Button with FontAwesome icons (Moon/Sun) -->
-    <button class="theme-toggle" onclick="toggleTheme()">
-      <i id="theme-icon" class="fa fa-moon"></i> <!-- Default to moon icon -->
-    </button>
+  <!-- Final Score and Feedback -->
+  <div id="final-feedback" style="display: none;">
+    <h2>Game Over</h2>
+    <p id="final-score"></p>
+    <p id="feedback-message"></p>
   </div>
 
   <script src="script.js"></script>
